@@ -1,0 +1,50 @@
+{
+  "name": "@ngnjs/libdata",
+  "version": "0.0.1",
+  "description": "A plugin module for NGN.",
+  "type": "module",
+  "author": "Corey Butler\n",
+  "private": false,
+  "license": "MIT",
+  "homepage": "https://github.com/<owner>/<repo>",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/<owner>/<repo>.git"
+  },
+  "bugs": {
+    "url": "https://github.com/<owner>/<repo>/issues"
+  },
+  "main": "src/index.js",
+  "peerDependencies": {
+    "@author.io/dev": "^1.0.15"
+  },
+  "scripts": {
+    "test": "npm run test:node && npm run test:deno && npm run test:browser && npm run report:syntax && npm run report:size",
+    "start": "dev workspace",
+    "build": "dev build",
+    "test:node": "dev test -rt node tests/*.js",
+    "test:deno": "dev test -rt deno tests/*.js",
+    "test:browser": "dev test -rt browser tests/*.js",
+    "manually": "dev test -rt manual tests/*.js",
+    "report:syntax": "dev report syntax --pretty",
+    "report:size": "dev report size ./.dist/**/*.js ./.dist/**/*.js.map",
+    "report:compat": "dev report compatibility ./src/**/*.js",
+    "report:preview": "npm pack --dry-run && echo \"==============================\" && echo \"This report shows what will be published to the module registry. Pay attention to the tarball contents and assure no sensitive files will be published.\"",
+    "update": "npm update --save --save-dev --save-optional"
+  },
+  "dev": {
+    "mode": "source",
+    "source": {
+      "alias": {
+        "@ngnjs/libdata": "/app/src/index.js"
+      }
+    }
+  },
+  "standard": {
+    "globals": [
+      "globalThis",
+      "window",
+      "global"
+    ]
+  }
+}

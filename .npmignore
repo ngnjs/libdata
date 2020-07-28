@@ -1,0 +1,6 @@
+build
+test
+examples
+.*
+*.log
+*.md
