@@ -37,10 +37,10 @@ test('typeOf', function (t) {
 })
 
 test('nullIf', function (t) {
-  t.ok(nullIf('') === null, 'nullIf identifies blank/empty strings as null by default.')
-  t.ok(nullIf('test', 'test') === null, 'nullIf returns null for matching values.')
-  t.ok(nullIf('test') === 'test', 'nullIf returns non-blank/empty values by default.')
-  t.ok(nullIf('test', 'not_test') === 'test', 'nullIf return test value when it does not match the null qualifier.')
+  t.expect(null, nullIf(''), 'nullIf identifies blank/empty strings as null by default.')
+  t.expect(null, nullIf('test', 'test'), 'nullIf returns null for matching values.')
+  t.expect('test', nullIf('test'), 'nullIf returns non-blank/empty values by default.')
+  t.expect('test', nullIf('test', 'not_test'), 'nullIf return test value when it does not match the null qualifier.')
 
   var obj = {}
 
@@ -81,18 +81,18 @@ test('coalesceb', function (t) {
 })
 
 test('getPrimitive', function (t) {
-  t.ok(getPrimitive('number') === Number, 'getPrimitive identifies number.')
-  t.ok(getPrimitive('regexp') === RegExp, 'getPrimitive identifies regexp.')
-  t.ok(getPrimitive('regex') === RegExp, 'getPrimitive identifies regex w/ warning.')
-  t.ok(getPrimitive('boolean') === Boolean, 'getPrimitive identifies boolean.')
-  t.ok(getPrimitive('symbol') === Symbol, 'getPrimitive identifies symbol.')
-  t.ok(getPrimitive('date') === Date, 'getPrimitive identifies date.')
-  t.ok(getPrimitive('array') === Array, 'getPrimitive identifies array.')
-  t.ok(getPrimitive('object') === Object, 'getPrimitive identifies object.')
-  t.ok(getPrimitive('function') === Function, 'getPrimitive identifies function.')
-  t.ok(getPrimitive('string') === String, 'getPrimitive identifies string.')
-  t.ok(getPrimitive('nada', String) === String, 'getPrimitive identifies default type.')
-  t.ok(getPrimitive('nada') === undefined, 'getPrimitive defaults to undefined when no type is recognized.')
+  t.expect(Number, getPrimitive('number'), 'getPrimitive identifies number.')
+  t.expect(RegExp, getPrimitive('regexp'), 'getPrimitive identifies regexp.')
+  t.expect(RegExp, getPrimitive('regex'), 'getPrimitive identifies regex w/ warning.')
+  t.expect(Boolean, getPrimitive('boolean'), 'getPrimitive identifies boolean.')
+  t.expect(Symbol, getPrimitive('symbol'), 'getPrimitive identifies symbol.')
+  t.expect(Date, getPrimitive('date'), 'getPrimitive identifies date.')
+  t.expect(Array, getPrimitive('array'), 'getPrimitive identifies array.')
+  t.expect(Object, getPrimitive('object'), 'getPrimitive identifies object.')
+  t.expect(Function, getPrimitive('function'), 'getPrimitive identifies function.')
+  t.expect(String, getPrimitive('string'), 'getPrimitive identifies string.')
+  t.expect(String, getPrimitive('nada', String), 'getPrimitive identifies default type.')
+  t.expect(undefined, getPrimitive('nada'), 'getPrimitive defaults to undefined when no type is recognized.')
 
   t.end()
 })
