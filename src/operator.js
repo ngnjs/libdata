@@ -151,7 +151,7 @@ function getPrimitive (type, defaultType) {
 
     case 'regex':
       // Warn and fall through to the RegExp case.
-      console.warn('regex is not a valid JavaScript type. Using regexp instead.')
+      // console.warn('regex is not a valid JavaScript type. Using regexp instead.')
 
     case 'regexp': // eslint-disable-line no-fallthrough
       return RegExp

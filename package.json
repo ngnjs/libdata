@@ -2,19 +2,21 @@
   "name": "@ngnjs/libdata",
   "version": "0.0.1",
   "description": "A plugin module for NGN.",
+  "main": "src/index.js",
+  "module": "index.js",
+  "browser": "./index.js",
   "type": "module",
-  "author": "Corey Butler\n",
+  "author": "Corey Butler",
   "private": false,
   "license": "MIT",
-  "homepage": "https://github.com/<owner>/<repo>",
+  "homepage": "https://github.com/ngnjs/libdata",
   "repository": {
     "type": "git",
-    "url": "https://github.com/<owner>/<repo>.git"
+    "url": "https://github.com/ngnjs/libdata.git"
   },
   "bugs": {
-    "url": "https://github.com/<owner>/<repo>/issues"
+    "url": "https://github.com/ngnjs/libdata/issues"
   },
-  "main": "src/index.js",
   "peerDependencies": {
     "@author.io/dev": "^1.0.15"
   },

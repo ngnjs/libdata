@@ -34,7 +34,7 @@ import { typeOf } from '../operator.js'
  * the numeric value. When a radix is supplied, `parseInt` is used.
  * @private
  */
-const force = (value, radix = null) => {
+export const force = (value, radix = null) => {
   try {
     switch (typeOf(value)) {
       case 'boolean':
@@ -55,8 +55,4 @@ const force = (value, radix = null) => {
   } catch (e) {
     return NaN
   }
-}
-
-export {
-  force
 }

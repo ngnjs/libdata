@@ -1,6 +1,7 @@
 import { force as forceArray, dedupe } from './primitives/array.js'
 import { force as forceBoolean } from './primitives/boolean.js'
 import { force as forceNumber } from './primitives/number.js'
+import { force as forceString } from './primitives/string.js'
 import * as AdvancedSet from './primitives/set.js'
 import * as object from './primitives/object.js'
 import * as operators from './operator.js'
@@ -23,6 +24,7 @@ export {
   forceArray,
   forceBoolean,
   forceNumber,
+  forceString,
   object,
   typeOf,
   converge,

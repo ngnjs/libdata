@@ -7,7 +7,7 @@
  * The array with unique records.
  * @private
  */
-const dedupe = array => Array.from(new Set(array))
+export const dedupe = array => Array.from(new Set(array))
 
 /**
  * @method force
@@ -24,9 +24,4 @@ const dedupe = array => Array.from(new Set(array))
  * The value being forced to be an array.
  * @private
  */
-const force = value => value === null ? [] : (Array.isArray(value) ? value : [value])
-
-export {
-  dedupe,
-  force
-}
+export const force = value => value === null ? [] : (Array.isArray(value) ? value : [value])

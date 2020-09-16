@@ -3,7 +3,8 @@ import {
   dedupe,
   forceArray,
   forceBoolean,
-  forceNumber
+  forceNumber,
+  forceString
 } from '@ngnjs/libdata'
 
 test('dedupe', function (t) {
@@ -60,6 +61,32 @@ test('forceNumber', function (t) {
   t.ok(forceNumber(true) === 1 && forceNumber(false) === 0, 'Parsing boolean succeeds.')
   t.expect(100.1, forceNumber('100.1'), 'Float parsing succeeds.')
   t.expect(100, forceNumber('100.1', 10), 'Integer parsing succeeds.')
+
+  t.end()
+})
+
+test.only('forceString', function (t) {
+  class XClass {
+    demo () {}
+  }
+  function stringtest () {}
+  const dt = new Date(Date.UTC(2000, 1, 1))
+  const RE = /(.*)/gi
+  const s = Symbol.for('string.test')
+
+  t.expect('1', forceString(1), 'Convert number.')
+  t.expect('false', forceString(false), 'Convert boolean.')
+  t.expect('null', forceString(null), 'Convert null.')
+  t.expect('undefined', forceString(undefined), 'Convert undefined.')
+  t.expect('a,b,c', forceString(['a', 'b', 'c']), 'Convert array.')
+  t.expect('{"a":true}', forceString({ a: true }), 'Convert object.')
+  t.expect('2000-02-01T00:00:00.000Z', forceString(dt), 'Convert date.')
+  t.expect('/(.*)/gi', forceString(RE), 'Convert RegExp.')
+  t.expect('Symbol(string.test)', forceString(s), 'Convert Symbol.')
+  t.expect('stringtest', forceString(stringtest), 'Convert function.')
+  t.expect('XClass', forceString(XClass), 'Convert .')
+  t.expect('[object Map]', forceString(new Map()), 'Convert Map.')
+  t.expect('[object Set]', forceString(new Set()), 'Convert Set.')
 
   t.end()
 })

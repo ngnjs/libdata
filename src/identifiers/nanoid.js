@@ -4,8 +4,8 @@
 let fill
 ;(async () => {
   const available = globalThis.crypto !== undefined
-  fill = globalThis.crypto || (await import('crypto'))
-  fill = size => available ? fill.getRandomValues(new Uint8Array(size)) : fill.randomBytes(size)
+  const CRYPTO = await (globalThis.crypto || import('crypto'))
+  fill = size => available ? CRYPTO.getRandomValues(new Uint8Array(size)) : CRYPTO.randomBytes(size)
 })()
 
 function NANOID (size = 21) {

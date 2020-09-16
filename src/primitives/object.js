@@ -1,4 +1,5 @@
 import { typeOf } from '../operator.js'
+import { equal, except, diff } from './set.js'
 
 /**
  * @method all
@@ -86,16 +87,8 @@ function any () {
  * @private
  */
 function missing () {
-  const missing = new Set()
   const properties = new Set(Object.keys(arguments[0]))
-
-  for (let i = 1; i < arguments.length; i++) {
-    if (!properties.has(arguments[i])) {
-      missing.add(arguments[i])
-    }
-  }
-
-  return Array.from(missing)
+  return Array.from(diff(properties, new Set(Array.from(arguments).slice(1))))
 }
 
 /**
@@ -124,27 +117,7 @@ function missing () {
 function exactly () {
   const properties = new Set(Object.keys(arguments[0]))
   const args = new Set(Array.from(arguments).slice(1))
-
-  // If the attribute sizes aren't equal, it's not an exact match.
-  if (properties.size !== args.size) {
-    return false
-  }
-
-  // Check for extra properties on the object
-  for (const property of properties) {
-    if (!args.has(property)) {
-      return false
-    }
-  }
-
-  // Make sure there are enough properties.
-  for (const arg of args) {
-    if (!properties.has(arg)) {
-      return false
-    }
-  }
-
-  return true
+  return equal(properties, args)
 }
 
 /**
@@ -165,14 +138,7 @@ function exactly () {
  */
 function extraneous () {
   const extras = new Set(Object.keys(arguments[0]))
-
-  for (let i = 1; i < arguments.length; i++) {
-    if (extras.has(arguments[i])) {
-      extras.delete(arguments[i])
-    }
-  }
-
-  return Array.from(extras)
+  return Array.from(except(extras, new Set(Array.from(arguments).slice(1))))
 }
 
 /**
@@ -183,7 +149,7 @@ function extraneous () {
  */
 function require () {
   if (!all(...arguments)) {
-    throw new Error(`${arguments[0].constructor.name} is missing the following attributes: ${Missing(...arguments).join(', ')}`)
+    throw new Error(`${arguments[0].constructor.name} is missing the following attributes: ${missing(...arguments).join(', ')}`)
   }
 }
 
@@ -255,8 +221,8 @@ const serializeArray = data => typeof data === 'object' ? serialize(data) : data
  * Creates a JSON data object. _This differs from a JavaScript object._
  * Remember, JSON is a _text **format**_, not an enriched object. The output
  * of this method will contain no functions, setters, regular
- * expressions, date objects, sets, or maps. Complex data types, including 
- * getters, are converted to strings and numbers. 
+ * expressions, date objects, sets, or maps. Complex data types, including
+ * getters, are converted to strings and numbers.
  *
  * Functions & Setters are always ignored. Getters are evaluated recursively
  * until a simple object type is found or there are no further nested

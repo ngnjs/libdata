@@ -21,7 +21,7 @@ import { coalesceb, typeOf } from '../operator.js'
  * The value being forced to be a boolean.
  * @private
  */
-function force (value) {
+export function force (value) {
   switch (typeOf(value)) {
     case 'boolean':
       return value
@@ -41,8 +41,4 @@ function force (value) {
     default:
       return coalesceb(value) !== null
   }
-}
-
-export {
-  force
 }
