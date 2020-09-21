@@ -1,4 +1,4 @@
-# NGN libdata
+<h1 align="center">@ngnjs/libdata<br/><img src="https://img.shields.io/npm/v/@ngnjs/libdata?label=%40ngnjs%2Flibdata&logo=npm&style=social"/></h1>
 
 While this JavaScript library is maintained primarily by and for NGN, it is a standalone "cross-runtime" library (will work without NGN).
 
