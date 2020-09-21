@@ -1,6 +1,6 @@
 {
   "name": "@ngnjs/libdata",
-  "version": "1.0.0-alpha",
+  "version": "1.0.0-alpha.1",
   "description": "A plugin module for NGN.",
   "main": "src/index.js",
   "module": "index.js",
@@ -35,6 +35,9 @@
     "update": "npm update --save --save-dev --save-optional"
   },
   "dev": {
+    "replace": {
+      "<#REPLACE_VERSION#>": "package.version"
+    },
     "mode": "source",
     "source": {
       "alias": {

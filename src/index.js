@@ -38,3 +38,5 @@ export {
   NANOID,
   checksum
 }
+
+export const moduleVersion = '<#REPLACE_VERSION#>'
