@@ -119,16 +119,16 @@ function typeOf (el) {
 
   if (value === 'function' || typeof el === 'function') {
     if (!el.name) {
-      const name = coalesceb(el.toString().replace(/\n/gi, '').replace(/^function\s|\(.*$/mgi, '').toLowerCase(), 'function')
+      const name = coalesceb(el.toString().replace(/\n/gi, '').replace(/^function\s|\(.*$/mgi, ''), 'function')
 
       if (name.indexOf(' ') >= 0) {
         return 'function'
       }
 
-      return name.toLowerCase()
+      return name
     }
 
-    return coalesceb(el.name, 'function').toLowerCase()
+    return coalesceb(el.name, 'function')
   }
 
   return value.toLowerCase()

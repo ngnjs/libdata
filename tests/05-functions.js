@@ -16,20 +16,20 @@ test('typeOf', function (t) {
   t.ok(typeOf(true) === 'boolean', 'typeof recognizes booleans.')
   t.ok(typeOf(/\s{1,10}/gi) === 'regexp', 'typeof recognizes regular expressions.')
   t.ok(typeOf({}) === 'object', 'typeof recognizes objects.')
-  t.ok(typeOf(EmptyFn) === 'emptyfn', 'typeof recognizes unique function names as types.')
+  t.ok(typeOf(EmptyFn) === 'EmptyFn', 'typeof recognizes unique function names as types.')
   t.ok(typeOf([]) === 'array', 'typeof recognizes arrays.')
   t.ok(typeOf(null) === 'null', 'typeof recognizes null.')
   t.ok(typeOf() === 'undefined', 'typeof recognizes undefined.')
 
   function myFn () { }
-  t.ok(typeOf(myFn) === 'myfn', 'typeof recognizes custom function names.')
+  t.ok(typeOf(myFn) === 'myFn', 'typeof recognizes custom function names.')
 
   class myClass {
     constructor () {
       console.log('Nothing')
     }
   }
-  t.ok(typeOf(myClass) === 'myclass', 'typeof recognizes classes.')
+  t.ok(typeOf(myClass) === 'myClass', 'typeof recognizes classes.')
 
   t.ok(typeOf(() => { console.log('nothing') }) === 'function', 'typeof recognizes fat arrow methods as functions.')
 
