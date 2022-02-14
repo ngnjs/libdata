@@ -1,6 +1,6 @@
 {
   "name": "@ngnjs/libdata",
-  "version": "1.0.0-alpha.2",
+  "version": "1.0.0-alpha.3",
   "description": "A plugin module for NGN.",
   "main": "src/index.js",
   "module": "index.js",

@@ -2,13 +2,17 @@
 
 // Cross-runtime buffer fill
 let fill
-;(async () => {
-  const available = globalThis.crypto !== undefined
-  const CRYPTO = await (globalThis.crypto || import('crypto'))
-  fill = size => available ? CRYPTO.getRandomValues(new Uint8Array(size)) : CRYPTO.randomBytes(size)
-})()
+let CRYPTO = globalThis.crypto
+if (!CRYPTO) {
+  ;(async () => {
+    CRYPTO = await import('crypto')
+    fill = size => CRYPTO.randomBytes(size)
+  })()
+} else {
+  fill = size => CRYPTO.getRandomValues(new Uint8Array(size))
+}
 
-function NANOID (size = 21) {
+export default function NANOID (size = 21) {
   const bytes = fill(size)
   let id = ''
 
@@ -21,6 +25,5 @@ function NANOID (size = 21) {
 }
 
 export {
-  NANOID as default,
   NANOID
 }
