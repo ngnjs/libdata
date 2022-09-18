@@ -2,8 +2,12 @@
   "name": "@ngnjs/libdata",
   "version": "1.0.0-alpha.3",
   "description": "A plugin module for NGN.",
-  "main": "src/index.js",
   "module": "index.js",
+  "exports": {
+    ".": {
+      "import": "./index.js"
+    }
+  },
   "browser": "./index.js",
   "type": "module",
   "author": "Corey Butler",
